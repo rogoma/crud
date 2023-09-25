@@ -9,8 +9,8 @@
                 <div class="card">
                     <div class="card-header">Proveedores</div>
                     <div class="card-body">
-                        <a href="{{ url('/proveedores/create') }}" class="btn btn-success btn-sm" title="Add New Proveedore">
-                            <i class="fa fa-plus" aria-hidden="true"></i> Add New
+                        <a href="{{ url('/proveedores/create') }}" class="btn btn-success btn-sm" title="Agregar nuevo Proveedor">
+                            <i class="fa fa-plus" aria-hidden="true"></i> Agregar nuevo
                         </a>
 
                         <form method="GET" action="{{ url('/proveedores') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
