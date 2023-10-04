@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmpleadosController;
 use App\Http\Controllers\ProveedoresController;
+use App\Http\Controllers\CargosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,5 +22,4 @@ Route::get('/', function () {
 
 Route::resource('empleados', EmpleadosController::class);
 Route::resource('proveedores', ProveedoresController::class);
-
-Route::resource('positions', PositionsController::class);
+Route::resource('cargos', CargosController::class);
