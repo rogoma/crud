@@ -51,7 +51,8 @@ class CargosController extends Controller
     public function store(Request $request)
     {
         $rules = array(
-            'descripcion' => 'string|required|max:20'
+            'descripcion' => 'string|required|max:200',
+            'estado' => 'numeric|required|min:1|max:2',
         );
 
         $validator =  Validator::make($request->input(), $rules);
@@ -60,10 +61,21 @@ class CargosController extends Controller
         }
 
         $requestData = $request->all();
-
         Cargo::create($requestData);
+        return redirect('cargos')->with('flash_message', 'Cargo agregado!');
 
-        return redirect('cargos')->with('flash_message', 'Cargo added!');
+        // $estado = intval($request->input(('estado')));
+
+        // // print_r($estado);exit;
+
+        // if($estado <0){
+        //     $validator->errors()->add('estado', 'estado debe ser mayor a 0');
+        //     return back()->withErrors($validator)->withInput();
+        // }else{
+        //     $requestData = $request->all();
+        //     Cargo::create($requestData);
+        //     return redirect('cargos')->with('flash_message', 'Cargo added!');
+        // }
     }
 
     /**

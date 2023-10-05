@@ -25,7 +25,8 @@ class Cargo extends Model
      *
      * @var array
      */
-    protected $fillable = ['descripcion'];
+    protected $fillable = ['descripcion','estado'];
+    
 
 
 }

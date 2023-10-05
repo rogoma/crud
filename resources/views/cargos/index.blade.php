@@ -3,9 +3,9 @@
 @section('content')
     <div class="container">
         <div class="row">
-            @include('admin.sidebar')
+            {{-- @include('admin.sidebar') --}}
 
-            <div class="col-md-9">
+            <div class="col-md-12 col-lg-12 col-sm-6">
                 <div class="card">
                     <div class="card-header">Cargos</div>
                     <div class="card-body">
@@ -30,7 +30,7 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th><th>descripcion</th><th>Actions</th>
+                                        <th>#</th><th>descripcion</th><th>estado</th><th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -38,6 +38,7 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->descripcion }}</td>
+                                        <td>{{ $item->estado }}</td>
                                         <td>
                                             <a href="{{ url('/cargos/' . $item->id) }}" title="View Cargo"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/cargos/' . $item->id . '/edit') }}" title="Edit Cargo"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
