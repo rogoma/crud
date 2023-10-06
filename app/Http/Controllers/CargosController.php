@@ -117,6 +117,16 @@ class CargosController extends Controller
     public function update(Request $request, $id)
     {
 
+        $rules = array(
+            'descripcion' => 'string|required|max:200',
+            'estado' => 'numeric|required|min:1|max:2',
+        );
+
+        $validator =  Validator::make($request->input(), $rules);
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+        
         $requestData = $request->all();
 
         $cargo = Cargo::findOrFail($id);
@@ -136,6 +146,5 @@ class CargosController extends Controller
     {
         Cargo::destroy($id);
 
-        return redirect('cargos')->with('flash_message', 'Cargo deleted!');
-    }
+        return redirect('cargos')->with('flash_message', 'Cargo borrado!');    }
 }

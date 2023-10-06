@@ -52,7 +52,7 @@ class EmpleadosController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $requestData = $request->all();
                 if ($request->hasFile('foto')) {
             $requestData['foto'] = $request->file('foto')
@@ -102,7 +102,7 @@ class EmpleadosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $requestData = $request->all();
                 if ($request->hasFile('foto')) {
             $requestData['foto'] = $request->file('foto')
@@ -112,7 +112,7 @@ class EmpleadosController extends Controller
         $empleado = Empleado::findOrFail($id);
         $empleado->update($requestData);
 
-        return redirect('empleados')->with('flash_message', 'Empleado updated!');
+        return redirect('empleados')->with('flash_message', 'Empleado actualizado!');
     }
 
     /**
