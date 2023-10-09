@@ -1,9 +1,3 @@
-<div class="form-group {{ $errors->has('foto') ? 'has-error' : ''}}">
-    <label for="foto" class="control-label">{{ 'Foto' }}</label>
-    <input class="form-control" name="foto" type="file" id="foto" value="{{ isset($empleado->foto) ? $empleado->foto : ''}}" >
-    {!! $errors->first('foto', '<p class="help-block">:message</p>') !!}
-</div>
-
 <div class="form-group {{ $errors->has('nombre') ? 'has-error' : ''}}">
     <label for="nombre" class="control-label">{{ 'Nombre' }}</label>
     <input class="form-control" name="nombre" type="text" id="nombre" value="{{ isset($empleado->nombre) ? $empleado->nombre : ''}}" >
@@ -21,7 +15,6 @@
     {!! $errors->first('correo', '<p class="help-block">:message</p>') !!}
 </div>
 
-
 <div class="form-group {{ $errors->has('cargo') ? 'has-error' : ''}}">
     <label for="cargo" class="control-label">{{ 'Cargo' }}</label>
         <select id="cargo" name="cargo" class="form-control">
@@ -30,6 +23,12 @@
                 <option value="{{ $cargo->id }}" @if ($cargo->id == old('cargo')) selected @endif>{{$cargo->descripcion}}</option>
             @endforeach
         </select>
+</div>
+
+<div class="form-group {{ $errors->has('foto') ? 'has-error' : ''}}">
+    <label for="foto" class="control-label">{{ 'Foto' }}</label>
+    <input class="form-control" name="foto" type="file" id="foto" value="{{ isset($empleado->foto) ? $empleado->foto : ''}}" >
+    {!! $errors->first('foto', '<p class="help-block">:message</p>') !!}
 </div>
 
 {{-- @if ($formMode === 'edit')

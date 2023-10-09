@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Validator;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
@@ -55,13 +56,33 @@ class EmpleadosController extends Controller
     public function store(Request $request)
     {
 
-        $requestData = $request->all();
-                if ($request->hasFile('foto')) {
-            $requestData['foto'] = $request->file('foto')
-                ->store('uploads', 'public');
+        $rules = array(
+            'foto' => 'string|max:150',
+            'nombre' => 'string|required|max:150',
+            'apellido' => 'string|required|max:150',
+            'correo' => 'string|required|max:100',
+            'cargo' => 'required',            
+        );
+
+        $validator =  Validator::make($request->input(), $rules);
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
         }
 
-        Empleado::create($requestData);
+        //$requestData = $request->all();
+        //        if ($request->hasFile('foto')) {
+        //    $requestData['foto'] = $request->file('foto')
+        //        ->store('uploads', 'public');
+        //}
+
+        $empleados = new Empleado;
+        $empleados->nombre = $request->input('nombre');
+        $empleados->apellido = $request->input('apellido');
+        $empleados->correo = $request->input('correo');
+        $empleados->foto = $request->input('foto');
+        $empleados->cargo_id = $request->input('cargo');        
+        $empleados->save();
+        //Empleado::create($requestData);
 
         return redirect('empleados')->with('flash_message', 'Empleado added!');
     }
