@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
 use App\Models\Empleado;
+use App\Models\Cargo;
 use Illuminate\Http\Request;
 
 class EmpleadosController extends Controller
@@ -40,7 +41,8 @@ class EmpleadosController extends Controller
      */
     public function create()
     {
-        return view('empleados.create');
+        $cargos = Cargo::all();
+        return view('empleados.create', compact('cargos'));
     }
 
     /**

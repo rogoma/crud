@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Cargo extends Model
@@ -26,7 +27,14 @@ class Cargo extends Model
      * @var array
      */
     protected $fillable = ['descripcion','estado'];
-    
 
+    use HasFactory;
+
+    /**
+     * Para obtener el vinculo con la tabla empleados
+     */
+    public function empleados(){
+        return $this->hasMany('App\Models\Empleado');
+    }
 
 }

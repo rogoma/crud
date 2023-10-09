@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Empleado extends Model
 {
+    use HasFactory;
+
     /**
      * The database table used by the model.
      *
@@ -25,7 +28,15 @@ class Empleado extends Model
      *
      * @var array
      */
-    protected $fillable = ['foto', 'nombre', 'apellido', 'correo'];
+    protected $fillable = ['foto', 'nombre', 'apellido', 'correo', 'cargo_id'];
 
-    
+
+    /**
+     * Para obtener el vinculo con la tabla cargos
+     */
+    public function cargo(){
+        return $this->belongsTo('App\Models\Cargo');
+    }
+
+
 }
