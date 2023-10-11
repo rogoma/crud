@@ -51,7 +51,7 @@ class CargosController extends Controller
     public function store(Request $request)
     {
         $rules = array(
-            'descripcion' => 'string|required|max:200',
+            'descripcion' => 'string|required|max:200|unique:cargos',
             'estado' => 'numeric|required|min:1|max:2',
         );
 
