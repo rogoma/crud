@@ -34,6 +34,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                {{-- <p>{{ $message }}</p> --}}
+
+                                @if(session('message'))
+                                        <div class="alert alert-success">
+                                            {{ session('message') }}
+                                        </div>
+                                @endif
+
                                 @foreach($cargos as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>

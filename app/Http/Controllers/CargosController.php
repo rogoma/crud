@@ -142,9 +142,19 @@ class CargosController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
+        $cargo = Cargo::find($id);
+
+        // Chequeamos si existen usuarios referenciando a departamentos
+        if($cargo->empleados->count() > 0){
+            //return response()->json(['status' => 'error', 'message' => 'No se ha podido eliminar el cargo debido a que se encuentra vinculado a Empleados ', 'code' => 200], 200);
+            $request->session()->flash('message', 'No se ha podido eliminar el cargo debido a que se encuentra vinculado a Empleados');
+            return redirect('cargos')->with('flash_message', 'Cargo NO borrado!');
+        }
+
         Cargo::destroy($id);
 
-        return redirect('cargos')->with('flash_message', 'Cargo borrado!');    }
+        return redirect('cargos')->with('flash_message', 'Cargo borrado!');
+    }
 }
