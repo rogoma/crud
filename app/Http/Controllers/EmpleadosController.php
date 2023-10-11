@@ -20,7 +20,7 @@ class EmpleadosController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->get('search');
-        $perPage = 25;
+        $perPage = 10;
 
         if (!empty($keyword)) {
             $empleados = Empleado::where('foto', 'LIKE', "%$keyword%")
@@ -61,7 +61,7 @@ class EmpleadosController extends Controller
             'nombre' => 'string|required|max:150',
             'apellido' => 'string|required|max:150',
             'correo' => 'string|required|max:100',
-            'cargo' => 'required',            
+            'cargo' => 'required',
         );
 
         $validator =  Validator::make($request->input(), $rules);
@@ -80,11 +80,11 @@ class EmpleadosController extends Controller
         $empleados->apellido = $request->input('apellido');
         $empleados->correo = $request->input('correo');
         $empleados->foto = $request->input('foto');
-        $empleados->cargo_id = $request->input('cargo');        
+        $empleados->cargo_id = $request->input('cargo');
         $empleados->save();
         //Empleado::create($requestData);
 
-        return redirect('empleados')->with('flash_message', 'Empleado added!');
+        return redirect('empleados')->with('flash_message', 'Empleado agregado!');
     }
 
     /**
@@ -111,8 +111,8 @@ class EmpleadosController extends Controller
     public function edit($id)
     {
         $empleado = Empleado::findOrFail($id);
-
-        return view('empleados.edit', compact('empleado'));
+        $cargos = Cargo::all();
+        return view('empleados.edit', compact('empleado','cargos'));
     }
 
     /**

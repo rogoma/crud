@@ -19,7 +19,7 @@ class CargosController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->get('search');
-        $perPage = 25;
+        $perPage = 5;
 
         if (!empty($keyword)) {
             $cargos = Cargo::where('descripcion', 'LIKE', "%$keyword%")
@@ -126,7 +126,7 @@ class CargosController extends Controller
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
-        
+
         $requestData = $request->all();
 
         $cargo = Cargo::findOrFail($id);
