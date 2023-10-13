@@ -25,11 +25,23 @@
         </select>
 </div>
 
+<div class="form-group {{ $errors->has('cargo') ? 'has-error' : ''}}">
+    <label for="estado" class="control-label">{{ 'Estado' }}</label>
+        <select id="estado" name="estado" class="form-control">
+        @foreach ($estados as $valor => $nombre)
+            <option value="{{ $valor }}">{{ $nombre }}</option>
+        @endforeach
+</select>
+</div>
+
 <div class="form-group {{ $errors->has('foto') ? 'has-error' : ''}}">
     <label for="foto" class="control-label">{{ 'Foto' }}</label>
     <input class="form-control" name="foto" type="file" id="foto" value="{{ isset($empleado->foto) ? $empleado->foto : ''}}" >
     {!! $errors->first('foto', '<p class="help-block">:message</p>') !!}
 </div>
+
+
+
 
 {{-- @if ($formMode === 'edit')
     <label for="descripcion" class="control-label">{{ 'descripcion' }}</label>

@@ -43,7 +43,12 @@ class EmpleadosController extends Controller
     public function create()
     {
         $cargos = Cargo::all();
-        return view('empleados.create', compact('cargos'));
+        $estados = [
+            1 => 'Activo',
+            2 => 'Inactivo'
+        ];
+
+        return view('empleados.create', compact('cargos','estados'));
     }
 
     /**
@@ -62,6 +67,7 @@ class EmpleadosController extends Controller
             'apellido' => 'string|required|max:150',
             'correo' => 'string|required|max:100',
             'cargo' => 'required',
+            'estado' => 'required',
         );
 
         $validator =  Validator::make($request->input(), $rules);
@@ -81,6 +87,7 @@ class EmpleadosController extends Controller
         $empleados->correo = $request->input('correo');
         $empleados->foto = $request->input('foto');
         $empleados->cargo_id = $request->input('cargo');
+        $empleados->estado = $request->input('estado');
         $empleados->save();
         //Empleado::create($requestData);
 
@@ -112,7 +119,12 @@ class EmpleadosController extends Controller
     {
         $empleado = Empleado::findOrFail($id);
         $cargos = Cargo::all();
-        return view('empleados.edit', compact('empleado','cargos'));
+        $estados = [
+            1 => 'Activo',
+            2 => 'Inactivo'
+        ];
+
+        return view('empleados.edit', compact('empleado','cargos','estados'));
     }
 
     /**
@@ -133,6 +145,11 @@ class EmpleadosController extends Controller
         }
 
         $empleado = Empleado::findOrFail($id);
+        $estados = [
+            1 => 'Activo',
+            2 => 'Inactivo'
+        ];
+
         $empleado->update($requestData);
 
         return redirect('empleados')->with('flash_message', 'Empleado actualizado!');
