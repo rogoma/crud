@@ -30,7 +30,7 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th><th>Foto</th><th>Nombre</th><th>Apellido</th><th>Cargo</th><th>Estado</th><th>Actions</th>
+                                        <th>#</th><th>Foto</th><th>Nombre y Apellido</th><th>Correo</th><th>Cargo</th><th>Estado</th><th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -38,10 +38,10 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->foto }}</td>
-                                        <td>{{ $item->nombre }}</td>
-                                        <td>{{ $item->apellido }}</td>
+                                        <td>{{ $item->nombre ." ". $item->apellido }}</td>
+                                        <td>{{ $item->correo }}</td>
                                         <td>{{ $item->cargo->descripcion }}</td>
-                                        
+
                                         @if ($item->estado == 1)
                                             <td>ACTIVO</td>
                                         @else
@@ -49,7 +49,7 @@
                                         @endif
 
                                         {{-- <td>{{ $item->estado }}</td> --}}
-                                        
+
                                         <td>
                                             <a href="{{ url('/empleados/' . $item->id) }}" title="View Empleado"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> Ver</button></a>
                                             <a href="{{ url('/empleados/' . $item->id . '/edit') }}" title="Edit Empleado"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</button></a>

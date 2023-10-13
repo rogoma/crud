@@ -65,7 +65,8 @@ class EmpleadosController extends Controller
             'foto' => 'string|max:150',
             'nombre' => 'string|required|max:150',
             'apellido' => 'string|required|max:150',
-            'correo' => 'string|required|max:100',
+            // 'correo' => 'string|required|max:100|unique:empleados', si es que hay que controlar unique en dirección de mail
+            'correo' => 'string|max:100|nullable',
             'cargo' => 'required',
             'estado' => 'required',
         );
@@ -137,6 +138,19 @@ class EmpleadosController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $rules = array(
+            'foto' => 'string|max:150',
+            'nombre' => 'string|required|max:150',
+            'apellido' => 'string|required|max:150',
+            'correo' => 'string|max:100|nullable',
+            'cargo' => 'required',
+            'estado' => 'required',
+        );
+
+        $validator =  Validator::make($request->input(), $rules);
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
 
         $requestData = $request->all();
                 if ($request->hasFile('foto')) {
@@ -144,13 +158,21 @@ class EmpleadosController extends Controller
                 ->store('uploads', 'public');
         }
 
-        $empleado = Empleado::findOrFail($id);
+        $empleados = Empleado::findOrFail($id);
         $estados = [
             1 => 'Activo',
             2 => 'Inactivo'
         ];
 
-        $empleado->update($requestData);
+        $empleados->nombre = $request->input('nombre');
+        $empleados->apellido = $request->input('apellido');
+        $empleados->correo = $request->input('correo');
+        $empleados->foto = $request->input('foto');
+        $empleados->cargo_id = $request->input('cargo');
+        $empleados->estado = $request->input('estado');
+        $empleados->save();
+
+        // $empleado->update($requestData);
 
         return redirect('empleados')->with('flash_message', 'Empleado actualizado!');
     }

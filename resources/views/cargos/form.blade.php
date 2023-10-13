@@ -12,9 +12,6 @@
     @else
         <label class="col-sm-2 col-form-label">Descripción</label>
         <input type="text" id="descripcion" name="descripcion" value="{{ old('descripcion') }}" class="form-control @error('descripcion') form-control-danger @enderror" value="{{ old('descripcion') }}">
-        {{-- @error('descripcion')
-            <div class="col-form-label">{{ $message }}</div>
-        @enderror --}}
     @endif
 
 </div>

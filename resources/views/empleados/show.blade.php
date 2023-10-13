@@ -30,13 +30,14 @@
                                     <tr><th> Foto </th><td> {{ $empleado->foto }} </td></tr>
                                     <tr><th> Nombre </th><td> {{ $empleado->nombre }} </td></tr>
                                     <tr><th> Apellido </th><td> {{ $empleado->apellido }} </td></tr>
-                                    <tr><th> Cargo </th><td> {{ $empleado->cargo->descripcion }} </td></tr>                                    
+                                    <tr><th> Correo </th><td> {{ $empleado->correo }} </td></tr>
+                                    <tr><th> Cargo </th><td> {{ $empleado->cargo->descripcion }} </td></tr>
                                     <tr><th> Estado </th>
                                         @if ($empleado->estado == 1)
                                             <td>ACTIVO</td>
                                         @else
                                             <td>INACTIVO</td>
-                                        @endif 
+                                        @endif
                                 </tbody>
                             </table>
                         </div>
