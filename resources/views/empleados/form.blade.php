@@ -38,7 +38,9 @@
         <label for="cargo" class="control-label">{{ 'Cargo' }}</label>
             <select id="cargo" name="cargo" class="form-control">
             @foreach ($cargos as $cargo)
-                <option value="{{ $cargo->id }}" @if ($cargo->id == old('cargo', $empleado->cargo_id)) selected @endif>{{ $cargo->descripcion }}</option>
+                <option value="{{ $cargo->id }}" 
+                    @if ($cargo->id == old('cargo', $empleado->cargo_id)) selected @endif>{{ $cargo->descripcion }}</option>
+                    {{-- value="{{ isset($empleado->correo) ? $empleado->correo : ''}}" > --}}
             @endforeach
         </select>
     @else

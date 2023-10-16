@@ -28,7 +28,7 @@ class Empleado extends Model
      *
      * @var array
      */
-    protected $fillable = ['foto', 'nombre', 'apellido', 'correo', 'cargo_id'];
+    protected $fillable = ['foto', 'nombre', 'apellido', 'correo', 'cargo_id', 'estado'];
 
 
     /**

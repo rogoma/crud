@@ -82,15 +82,17 @@ class EmpleadosController extends Controller
         //        ->store('uploads', 'public');
         //}
 
-        $empleados = new Empleado;
-        $empleados->nombre = $request->input('nombre');
-        $empleados->apellido = $request->input('apellido');
-        $empleados->correo = $request->input('correo');
-        $empleados->foto = $request->input('foto');
-        $empleados->cargo_id = $request->input('cargo');
-        $empleados->estado = $request->input('estado');
-        $empleados->save();
-        //Empleado::create($requestData);
+        // $empleados = new Empleado;
+        // $empleados->nombre = $request->input('nombre');
+        // $empleados->apellido = $request->input('apellido');
+        // $empleados->correo = $request->input('correo');
+        // $empleados->foto = $request->input('foto');
+        // $empleados->cargo_id = $request->input('cargo');
+        // $empleados->estado = $request->input('estado');
+        // $empleados->save();
+
+        $requestData = $request->all();
+        Empleado::create($requestData);
 
         return redirect('empleados')->with('flash_message', 'Empleado agregado!');
     }
@@ -159,20 +161,29 @@ class EmpleadosController extends Controller
         }
 
         $empleados = Empleado::findOrFail($id);
+        
         $estados = [
             1 => 'Activo',
             2 => 'Inactivo'
         ];
 
-        $empleados->nombre = $request->input('nombre');
-        $empleados->apellido = $request->input('apellido');
-        $empleados->correo = $request->input('correo');
-        $empleados->foto = $request->input('foto');
-        $empleados->cargo_id = $request->input('cargo');
-        $empleados->estado = $request->input('estado');
-        $empleados->save();
+        // $empleados->nombre = $request->input('nombre');
+        // $empleados->apellido = $request->input('apellido');
+        // $empleados->correo = $request->input('correo');
+        // $empleados->foto = $request->input('foto');
+        // $empleados->cargo_id = $request->input('cargo');
+        // $empleados->estado = $request->input('estado');
+        // $empleados->save();
 
-        // $empleado->update($requestData);
+        // print_r($request->input('cargo'));
+        // print_r($empleados->cargo_id);exit;
+
+        print_r($request->input('estado'));
+        print_r($empleados->estado);exit;
+
+        $requestData = $request->all();
+
+        $empleados->update($requestData);
 
         return redirect('empleados')->with('flash_message', 'Empleado actualizado!');
     }
