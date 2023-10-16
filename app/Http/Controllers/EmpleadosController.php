@@ -67,7 +67,7 @@ class EmpleadosController extends Controller
             'apellido' => 'string|required|max:150',
             // 'correo' => 'string|required|max:100|unique:empleados', si es que hay que controlar unique en dirección de mail
             'correo' => 'string|max:100|nullable',
-            'cargo' => 'required',
+            'cargo_id' => 'required',
             'estado' => 'required',
         );
 
@@ -76,11 +76,14 @@ class EmpleadosController extends Controller
             return back()->withErrors($validator)->withInput();
         }
 
-        //$requestData = $request->all();
-        //        if ($request->hasFile('foto')) {
-        //    $requestData['foto'] = $request->file('foto')
-        //        ->store('uploads', 'public');
-        //}
+        $requestData = $request->all();
+               if ($request->hasFile('foto')) {
+           $requestData['foto'] = $request->file('foto')
+               ->store('uploads', 'public');
+        }
+
+        // $requestData = $request->all(); REEEMPLAZA A TODO LO DE ABAJO PERO CADA OBJETO DEBE SER IGUAL AL NOMBRE DEL CAMPO DECLARADO EN EL MODELO Y EN LA VISTA
+        //(EJEMPLO cargo_id)
 
         // $empleados = new Empleado;
         // $empleados->nombre = $request->input('nombre');
@@ -90,7 +93,6 @@ class EmpleadosController extends Controller
         // $empleados->cargo_id = $request->input('cargo');
         // $empleados->estado = $request->input('estado');
         // $empleados->save();
-
         $requestData = $request->all();
         Empleado::create($requestData);
 
@@ -145,7 +147,7 @@ class EmpleadosController extends Controller
             'nombre' => 'string|required|max:150',
             'apellido' => 'string|required|max:150',
             'correo' => 'string|max:100|nullable',
-            'cargo' => 'required',
+            'cargo_id' => 'required',
             'estado' => 'required',
         );
 
@@ -161,7 +163,7 @@ class EmpleadosController extends Controller
         }
 
         $empleados = Empleado::findOrFail($id);
-        
+
         $estados = [
             1 => 'Activo',
             2 => 'Inactivo'
@@ -178,11 +180,7 @@ class EmpleadosController extends Controller
         // print_r($request->input('cargo'));
         // print_r($empleados->cargo_id);exit;
 
-        print_r($request->input('estado'));
-        print_r($empleados->estado);exit;
-
         $requestData = $request->all();
-
         $empleados->update($requestData);
 
         return redirect('empleados')->with('flash_message', 'Empleado actualizado!');
