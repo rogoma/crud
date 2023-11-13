@@ -5,6 +5,9 @@ use App\Http\Controllers\EmpleadosController;
 use App\Http\Controllers\ProveedoresController;
 use App\Http\Controllers\CargosController;
 
+use App\Http\Controllers\PaisesController;
+use App\Http\Controllers\UsuariosController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,3 +26,6 @@ Route::get('/', function () {
 Route::resource('empleados', EmpleadosController::class);
 Route::resource('proveedores', ProveedoresController::class);
 Route::resource('cargos', CargosController::class);
+
+Route::resource('paises', PaisesController::class);
+Route::resource('usuarios', UsuariosController::class);

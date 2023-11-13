@@ -8,6 +8,9 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">Empleados</div>
+                    <span>Pedido Nº </span>
+                    {{-- <span>Pedido Nº {{ $empleados->nombre }}</span> --}}
+
                     <div class="card-body">
                         <a href="{{ url('/empleados/create') }}" class="btn btn-success btn-sm" title="Agregar nuevo Empleado">
                             <i class="fa fa-plus" aria-hidden="true"></i> Agregar nuevo
