@@ -7,6 +7,7 @@ use App\Http\Controllers\CargosController;
 
 use App\Http\Controllers\PaisesController;
 use App\Http\Controllers\UsuariosController;
+use App\Http\Controllers\RegionesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,4 @@ Route::resource('cargos', CargosController::class);
 
 Route::resource('paises', PaisesController::class);
 Route::resource('usuarios', UsuariosController::class);
+Route::resource('regiones', RegionesController::class);

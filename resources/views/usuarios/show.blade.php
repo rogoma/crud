@@ -7,7 +7,9 @@
 
             <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header">Usuario {{ $usuario->id }}</div>
+                    <div class="card-header">Usuario: {{ $usuario->nombre }} Pais: {{ $usuario->pais->nombre }} Región: {{ $usuario->pais->region->nombre }}</div>
+                    {{-- <div class="card-header">Pais: {{ $usuario->pais->nombre }}</div>
+                    <div class="card-header">Región: {{ $usuario->pais->region->nombre }}</div> --}}
                     <div class="card-body">
 
                         <a href="{{ url('/usuarios') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>

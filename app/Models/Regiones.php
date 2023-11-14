@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Pais extends Model
+class Regiones extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'paises';
+    protected $table = 'regiones';
 
     /**
     * The database primary key value.
@@ -27,14 +27,9 @@ class Pais extends Model
      */
     protected $fillable = ['nombre'];
 
-    public function usuarios()
+    public function paises()
     {
-        // return $this->hasMany('App\Models\Empleado');
-        return $this->hasMany('App\Models\Usuario');
+        return $this->hasMany('App\Models\Pais');
     }
 
-    public function region()
-    {
-        return $this->belongsTo('App\Models\Regiones');
-    }
 }
