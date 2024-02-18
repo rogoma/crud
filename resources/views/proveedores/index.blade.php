@@ -53,6 +53,7 @@
                                 </tbody>
                             </table>
                             <div class="pagination-wrapper"> {!! $proveedores->appends(['search' => Request::get('search')])->render() !!} </div>
+                            {{-- {{ $proveedores->links('pagination::bootstrap-4') }} --}}
                         </div>
 
                     </div>

@@ -27,10 +27,11 @@
                         <br/>
                         <br/>
                         <div class="table-responsive">
-                            <table class="table">
+                            <table id="myTable" class="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th><th>Descripción</th><th>Estado</th><th>Acción</th>
+                                        {{-- <th>#</th> --}}
+                                        <th>Descripción</th><th>Estado</th><th>Acción</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -44,7 +45,7 @@
 
                                 @foreach($cargos as $item)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
+                                        {{-- <td>{{ $loop->iteration }}</td> --}}
                                         <td>{{ $item->descripcion }}</td>
                                         <td>{{ $item->estado }}</td>
                                         <td>
@@ -60,13 +61,20 @@
                                     </tr>
                                 @endforeach
                                 </tbody>
-                            </table>
-                            <div class="pagination-wrapper"> {!! $cargos->appends(['search' => Request::get('search')])->render() !!} </div>
+                            </table>                            
+                            <!-- Muestra la paginación de DataTables -->
+                            {{-- <div class="pagination-wrapper"> {!! $cargos->appends(['search' => Request::get('search')])->render() !!} </div> --}}
+                            {{ $cargos->links('pagination::bootstrap-4') }}
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
 @endsection
+
+{{-- <script>
+    $(document).ready(function () {
+        $('#myTable').DataTable();
+    });
+</script> --}}

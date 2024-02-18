@@ -64,9 +64,9 @@
                                 @endforeach
                                 </tbody>
                             </table>
-                            <div class="pagination-wrapper"> {!! $empleados->appends(['search' => Request::get('search')])->render() !!} </div>
+                            {{-- <div class="pagination-wrapper"> {!! $empleados->appends(['search' => Request::get('search')])->render() !!} </div> --}}
+                            {{ $empleados->links('pagination::bootstrap-4') }}
                         </div>
-
                     </div>
                 </div>
             </div>
